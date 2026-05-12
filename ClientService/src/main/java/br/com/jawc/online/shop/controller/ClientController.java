@@ -75,12 +75,22 @@ public class ClientController {
     @PostMapping
     @Operation(summary = "Register a new client")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "client successfully registered")
+            @ApiResponse(responseCode = "200", description = "client successfully registered"),
             @ApiResponse(responseCode = "400", description = "Validation error or duplicate key")
     })
     public ResponseEntity<Client> register(@RequestBody @Valid Client client){
         return ResponseEntity.ok(registerClient.register(client));
     }
 
+
+    @PutMapping
+    @Operation(summary = "updating a client")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "client successfully updated"),
+            @ApiResponse(responseCode = "404", description = "client not found")
+    })
+    public ResponseEntity<Client> update(@RequestBody @Valid Client client){
+        return ResponseEntity.ok(registerClient.update(client));
+    }
 
 }
