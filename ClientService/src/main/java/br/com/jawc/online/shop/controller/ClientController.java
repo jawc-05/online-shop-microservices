@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,4 +71,16 @@ public class ClientController {
     public ResponseEntity<Boolean> exists(@PathVariable(value = "id", required = true)String id){
         return ResponseEntity.ok(searchClient.exists(id));
     }
+
+    @PostMapping
+    @Operation(summary = "Register a new client")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "client successfully registered")
+            @ApiResponse(responseCode = "400", description = "Validation error or duplicate key")
+    })
+    public ResponseEntity<Client> register(@RequestBody @Valid Client client){
+        return ResponseEntity.ok(registerClient.register(client));
+    }
+
+
 }
