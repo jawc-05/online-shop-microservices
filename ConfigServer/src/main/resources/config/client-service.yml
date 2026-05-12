@@ -3,8 +3,6 @@ server:
   wait-time-in-ms-when-sync-empty: 3000
 
 spring:
-  profiles:
-    active: native
   data:
     mongodb:
       uri: mongodb://admin:admin@localhost:27017/client_db?authSource=admin
