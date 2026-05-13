@@ -93,7 +93,7 @@ public class ClientController {
         return ResponseEntity.ok(registerClient.update(client));
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "/{id}")
     @Operation(summary = "deletes a client by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "client deleted"),

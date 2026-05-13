@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 /**
  * @author jawc
  */
-@Configuration
-@EnableMongoRepositories(basePackages = "br.com.jawc.online.shop.repository")
+//@Configuration
+//@EnableMongoRepositories(basePackages = "br.com.jawc.online.shop.repository")
 public class MongoConfig {
 
 }

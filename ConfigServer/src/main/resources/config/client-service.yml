@@ -3,10 +3,13 @@ server:
   wait-time-in-ms-when-sync-empty: 3000
 
 spring:
+
+  mongodb:
+    uri: mongodb://client_user:client_password@localhost:27017/client_db?authSource=client_db
+    auto-index-creation: true
+
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/client_db?authSource=admin
-      auto-index-creation: true
-
+      uri: mongodb://client_user:client_password@localhost:27017/client_db?authSource=client_db
 app:
-  version: 1.0
+  version: "1.0"
