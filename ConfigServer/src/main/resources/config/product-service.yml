@@ -3,12 +3,13 @@ server:
   wait-time-in-ms-when-sync-empty: 3000
 
 spring:
-  profiles:
-    active: native
+
+  mongodb:
+    uri: mongodb://product_user:product_password@localhost:27017/product_db?authSource=product_db
+    auto-index-creation: true
+
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/product_db?authSource=admin
-      auto-index-creation: true
-
+      uri: mongodb://product_user:product_password@localhost:27017/product_db?authSource=product_db
 app:
-  version: 1.0
+  version: "1.0"
