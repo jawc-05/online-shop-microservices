@@ -107,4 +107,15 @@ public class ProductController {
     public ResponseEntity<Product> register(@RequestBody @Valid Product product) {
         return ResponseEntity.ok(registerProduct.register(product));
     }
+
+    @PutMapping
+    @Operation(summary = "updating a product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "product successfully updated"),
+            @ApiResponse(responseCode = "404", description = "prodcut not found")
+    })
+    public ResponseEntity<Product> update(@RequestBody @Valid Product product) {
+        return ResponseEntity.ok(registerProduct.update(product));
+    }
 }
+
