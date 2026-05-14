@@ -117,5 +117,15 @@ public class ProductController {
     public ResponseEntity<Product> update(@RequestBody @Valid Product product) {
         return ResponseEntity.ok(registerProduct.update(product));
     }
+
+    @DeleteMapping(value = "/{id}")
+    @Operation(summary = "'delete' product (unactive status)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "product successfully 'deleted'"),
+            @ApiResponse(responseCode = "404", description = "product not found")
+    })
+    public ResponseEntity<Product> delete(@PathVariable(value = "id", required = true) String id) {
+        return ResponseEntity.ok(registerProduct.delete(id));
+    }
 }
 
