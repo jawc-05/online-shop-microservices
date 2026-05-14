@@ -32,6 +32,11 @@ public class SearchProduct {
         return  productRepository.findAllByStatus(pageable, Product.Status.ACTIVE);
     }
 
+    public Product searchProductById(String id) {
+        return productRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException(Product.class, "id", id));
+    }
+
     public Product searchProductByCode(String code) {
         return productRepository.findByCode(code)
                 .orElseThrow(()-> new EntityNotFoundException(Product.class, "code", code));
