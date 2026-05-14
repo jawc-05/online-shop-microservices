@@ -42,7 +42,7 @@ public class ProductController {
         return ResponseEntity.ok(searchProduct.searchAllProducts(pageable));
     }
 
-    @GetMapping
+    @GetMapping(value = "/active")
     @Operation(summary="Search for a paginated list of active products")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns the list of products"),
@@ -55,7 +55,7 @@ public class ProductController {
         return ResponseEntity.ok(searchProduct.searchAllActiveProducts(pageable, status.ACTIVE));
     }
 
-    @GetMapping
+    @GetMapping(value = "/unactive")
     @Operation(summary="Search for a paginated list of unactive products")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Returns the list of products"),
