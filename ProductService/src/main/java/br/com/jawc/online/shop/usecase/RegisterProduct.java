@@ -20,7 +20,7 @@ public class RegisterProduct {
         this.productRepository = productRepository;
     }
 
-    public Product registerProduct(@Valid  Product product) {
+    public Product register(@Valid  Product product) {
         product.setStatus(Product.Status.ACTIVE);
         return this.productRepository.insert(product);
     }

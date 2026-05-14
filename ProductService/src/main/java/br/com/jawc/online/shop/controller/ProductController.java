@@ -12,15 +12,13 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/product")
@@ -98,5 +96,15 @@ public class ProductController {
     })
     public ResponseEntity<Boolean> exists(@PathVariable(value = "id", required = true) String id){
         return ResponseEntity.ok(searchProduct.exists(id));
+    }
+
+    @PostMapping
+    @Operation(summary = "register a new product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "product successfully registered"),
+            @ApiResponse(responseCode = "400", description = "Validation error or duplicate key")
+    })
+    public ResponseEntity<Product> register(@RequestBody @Valid Product product) {
+        return ResponseEntity.ok(registerProduct.register(product));
     }
 }
