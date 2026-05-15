@@ -2,14 +2,16 @@ server:
   port: 8083
   wait-time-in-ms-when-sync-empty: 3000
 
+
 spring:
-  profiles:
-    active: native
+
+  mongodb:
+    uri: mongodb://sale_user:sale_password@localhost:27017/sale_db?authSource=sale_db
+    auto-index-creation: true
+
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/sale_db?authSource=admin
-      auto-index-creation: true
-
+      uri: mongodb://sale_user:sale_password@localhost:27017/sale_db?authSource=sale_db
 app:
   version: 1.0
   productService:
@@ -18,3 +20,4 @@ app:
   clientService:
     url: http://localhost:8081
     endpointConsultClient: ${app.clientService.url}/client/exists/{id}
+
