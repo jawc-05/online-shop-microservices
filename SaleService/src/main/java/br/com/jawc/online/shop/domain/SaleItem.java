@@ -32,4 +32,12 @@ public class SaleItem {
         this.totalValue = this.totalValue.add(itemPrice);
     }
 
+    public void remove(Integer quantity) {
+        this.quantity -= quantity;
+
+        BigDecimal newValue = this.priceAtSale.multiply(BigDecimal.valueOf(quantity));
+
+        this.totalValue = this.totalValue.subtract(newValue);
+    }
+
 }
