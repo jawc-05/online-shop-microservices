@@ -74,8 +74,8 @@ public class SaleController {
             @ApiResponse(responseCode = "200", description = "returns the sale"),
             @ApiResponse(responseCode = "404", description = "sale not found")
     })
-    public ResponseEntity<Sale> searchSaleByCode(String saleCode){
-        return ResponseEntity.ok(searchSale.searchSaleByCode(saleCode));
+    public ResponseEntity<Sale> searchSaleByCode(@PathVariable (value = "code", required = true) String code){
+        return ResponseEntity.ok(searchSale.searchSaleByCode(code));
     }
 
     @PostMapping
