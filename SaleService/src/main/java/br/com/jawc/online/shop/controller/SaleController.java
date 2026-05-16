@@ -3,7 +3,6 @@
  */
 package br.com.jawc.online.shop.controller;
 
-import br.com.jawc.online.shop.domain.Product;
 import br.com.jawc.online.shop.domain.Sale;
 import br.com.jawc.online.shop.usecase.RegisterSale;
 import br.com.jawc.online.shop.usecase.SearchSale;
@@ -14,7 +13,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -88,6 +86,19 @@ public class SaleController {
     })
     public ResponseEntity<Sale> register(@RequestBody @Valid Sale sale){
         return ResponseEntity.ok(registerSale.registerSale(sale));
+    }
+
+    @PutMapping(value = "/{saleCode}/product/{productCode}/{quantity}")
+    @Operation(summary = "Add a product item into an existing sale")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "product successfully added to the sale"),
+            @ApiResponse(responseCode = "404", description = "Sale or product not found")
+    })
+    public ResponseEntity<Sale> addProductToSale(
+            @PathVariable (value = "saleCode", required = true) String saleCode,
+            @PathVariable(value = "productCode", required = true) String productCode,
+            @PathVariable(value = "quantity", required = true) Integer quantity){
+        return ResponseEntity.ok(registerSale.addProductToSale(quantity, productCode, saleCode));
     }
 
 }
