@@ -16,8 +16,8 @@ import java.math.BigDecimal;
 
 @Service
 public class RegisterSale {
-    private ISaleRepository saleRepository;
-    private IProductService productService;
+    private final ISaleRepository saleRepository;
+    private final IProductService productService;
 
     @Autowired
     public RegisterSale(ISaleRepository saleRepository,  IProductService productService) {

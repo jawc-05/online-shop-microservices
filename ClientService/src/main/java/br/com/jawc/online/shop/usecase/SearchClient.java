@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 public class SearchClient {
-     private IClientRepository clientRepository;
+     private final IClientRepository clientRepository;
 
      @Autowired
     public SearchClient(IClientRepository clientRepository) {

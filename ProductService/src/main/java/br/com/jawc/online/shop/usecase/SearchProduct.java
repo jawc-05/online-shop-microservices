@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 public class SearchProduct {
 
-    private IProductRepository productRepository;
+    private final IProductRepository productRepository;
 
     @Autowired
     public SearchProduct(IProductRepository productRepository) {

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisterClient {
-    private IClientRepository clientRepository;
+    private final IClientRepository clientRepository;
 
     @Autowired
     public RegisterClient(IClientRepository clientRepository) {

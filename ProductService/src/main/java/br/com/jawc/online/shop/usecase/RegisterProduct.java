@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegisterProduct {
 
-    private IProductRepository productRepository;
+    private final IProductRepository productRepository;
 
     @Autowired
     public RegisterProduct(IProductRepository productRepository) {
