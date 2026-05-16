@@ -65,7 +65,7 @@ public class Sale {
     @NotNull
     private LocalDate saleDate;
 
-    private void validateStatus() {
+    public void validateStatus() {
         if (this.status == Status.COMPLETED || this.status == Status.CANCELLED) {
             throw new UnsupportedOperationException("Cannot modify a closed or cancelled sale.");
         }
