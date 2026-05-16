@@ -102,4 +102,22 @@ public class Sale {
 
         recalculateTotalValue();
     }
+
+    public void removeProduct(String productCode, Integer quantity) {
+        validateStatus();
+
+       Optional<SaleItem> op = items.stream()
+               .filter(item -> item.getProductCode().equals(productCode))
+               .findAny();
+       if (op.isPresent()) {
+           SaleItem existing = op.get();
+
+           if (existing.getQuantity() > quantity) {
+               existing.remove(quantity);
+           }else{
+               items.remove(existing);
+           }
+       }
+       recalculateTotalValue();
+    }
 }
