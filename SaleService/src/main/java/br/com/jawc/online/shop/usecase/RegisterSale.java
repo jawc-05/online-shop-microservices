@@ -61,7 +61,7 @@ public class RegisterSale {
         sale.validateStatus();
         sale.addProduct(product.getCode(), quantity,  product.getPrice());
 
-
+        sale.recalculateTotalValue();
 
         return saleRepository.save(sale);
     }
