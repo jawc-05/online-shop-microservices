@@ -4,6 +4,7 @@
 package br.com.jawc.online.shop.controller;
 
 import br.com.jawc.online.shop.domain.Sale;
+import br.com.jawc.online.shop.dto.SaleDTO;
 import br.com.jawc.online.shop.usecase.RegisterSale;
 import br.com.jawc.online.shop.usecase.SearchSale;
 import io.swagger.v3.oas.annotations.Operation;
@@ -84,7 +85,7 @@ public class SaleController {
             @ApiResponse(responseCode = "200", description = "sale successfully registered"),
             @ApiResponse(responseCode = "400", description = "Validation error or duplicate key")
     })
-    public ResponseEntity<Sale> register(@RequestBody @Valid Sale sale){
+    public ResponseEntity<Sale> register(@RequestBody @Valid SaleDTO sale){
         return ResponseEntity.ok(registerSale.registerSale(sale));
     }
 
