@@ -18,9 +18,9 @@ public class OpenAPIConfig {
     public OpenAPI customOpenAPI(@Value("${app.version}") String appVersion) {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Product Service")
+                        .title("Sale Service")
                         .version(appVersion)
-                        .description("Service for managing online shop products")
+                        .description("Service for managing online shop sells")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org"))
                         .contact(new Contact().name("João Alfredo").email("joaowilligesfieldflow@gmail.com")));
