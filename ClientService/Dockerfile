@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-ubi9-minimal
+FROM eclipse-temurin:21-jdk-ubi9-minimal
 LABEL maintainer="João Alfredo Williges Cunha"
 
 ARG JAR_FILE=target/*.jar
