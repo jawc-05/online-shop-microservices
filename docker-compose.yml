@@ -1,0 +1,96 @@
+version: "3.8"
+
+networks:
+  online-shop-net:
+    name: online-shop-net
+    driver: bridge
+
+services:
+
+
+  config-server:
+    build: ./ConfigServer
+    container_name: "shop-config-server"
+    networks:
+      - online-shop-net
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+
+
+  discovery-service:
+    build: ./ServiceDiscovery
+    container_name: "shop-discovery-service"
+    networks:
+      - online-shop-net
+    ports:
+      - "8761:8761"
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8888
+      - PORT=8080
+      - EUREKA_HOSTNAME=discovery-service
+    depends_on:
+      - config-server
+
+
+  shop-mongo-database:
+    image: mongo:latest
+    container_name: "shop-mongo-database"
+    platform: linux/amd64/v8
+    networks:
+      - online-shop-net
+    ports:
+      - "27017:27017"
+
+  client-service:
+    build: ./ClientService
+    container_name: "shop-client-service"
+    networks:
+      - online-shop-net
+    ports:
+      - "8081:8080"
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8888
+      - PORT=8080
+      - MONGODB_HOST=shop-mongo-database
+      - DISCOVERY_HOST=discovery-service
+    depends_on:
+      - config-server
+      - discovery-service
+      - shop-mongo-database
+
+  product-service:
+    build: ./ProductService
+    container_name: "shop-product-service"
+    networks:
+      - online-shop-net
+    ports:
+      - "8082:8080"
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8888
+      - PORT=8080
+      - MONGODB_HOST=shop-mongo-database
+      - DISCOVERY_HOST=discovery-service
+    depends_on:
+      - config-server
+      - discovery-service
+      - shop-mongo-database
+
+
+  sale-service:
+    build: ./SalesService
+    container_name: "shop-sale-service"
+    networks:
+      - online-shop-net
+    ports:
+      - "8083:8080"
+    environment:
+      - CONFIG_SERVER_URL=http://config-server:8888
+      - PORT=8080
+      - MONGODB_HOST=shop-mongo-database
+      - DISCOVERY_HOST=discovery-service
+    depends_on:
+      - config-server
+      - discovery-service
+      - shop-mongo-database
