@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "client-service")
 public interface IClientService {
 
-    @GetMapping("/exists/{id}")
+    @GetMapping("/client/exists/{id}")
     Boolean isCustomerRegistered(@PathVariable("id") String id);
 }
