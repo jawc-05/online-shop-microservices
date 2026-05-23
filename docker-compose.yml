@@ -37,7 +37,7 @@ services:
   shop-mongo-database:
     image: mongo:latest
     container_name: "shop-mongo-database"
-    platform: linux/amd64/v8
+    platform: linux/arm64
     networks:
       - online-shop-net
     ports:
