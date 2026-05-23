@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: discovery-service
+  profiles:
+    active: native
+  config:
+    import: "optional:configserver:${CONFIG_SERVER_URL:http://root:root@localhost:8888}"
