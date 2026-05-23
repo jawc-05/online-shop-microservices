@@ -79,7 +79,7 @@ services:
 
 
   sale-service:
-    build: ./SalesService
+    build: ./SaleService
     container_name: "shop-sale-service"
     networks:
       - online-shop-net
