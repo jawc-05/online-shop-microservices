@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: sale-service
+  profiles:
+    active: native
+  mongodb:
+    host: ${MONGODB_HOST:localhost}
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://root:root@localhost:8888}
+
+app:
+  version: 1.0
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:discovery-service}:8761/eureka/
