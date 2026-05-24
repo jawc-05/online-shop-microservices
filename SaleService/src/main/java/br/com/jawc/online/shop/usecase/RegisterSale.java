@@ -78,4 +78,12 @@ public class RegisterSale {
         }
         return prod;
     }
+
+    private Sale finishSale(String saleCode){
+        Sale sale = saleRepository.findByCode(saleCode)
+                .orElseThrow(() -> new EntityNotFoundException(Sale.class, "saleCode", saleCode));
+        sale.setStatus(Sale.Status.COMPLETED);
+        return this.saleRepository.save(sale);
+
+    }
 }
