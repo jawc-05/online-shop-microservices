@@ -1,15 +1,29 @@
 server:
-  port: 8081
+  port: ${PORT:8081}
   wait-time-in-ms-when-sync-empty: 3000
 
 spring:
+  application:
+    name: client-service
 
   mongodb:
-    uri: mongodb://client_user:client_password@localhost:27017/client_db?authSource=client_db
+    host: ${MONGODB_HOST:localhost}
+    port: 27017
+    database: client_db
     auto-index-creation: true
 
-  data:
-    mongodb:
-      uri: mongodb://client_user:client_password@localhost:27017/client_db?authSource=client_db
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:discovery-service}:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 app:
   version: "1.0"

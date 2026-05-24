@@ -1,23 +1,29 @@
 server:
-  port: 8083
+  port: ${PORT:8083}
   wait-time-in-ms-when-sync-empty: 3000
 
-
 spring:
+  application:
+    name: sale-service
 
   mongodb:
-    uri: mongodb://sale_user:sale_password@localhost:27017/sale_db?authSource=sale_db
+    host: ${MONGODB_HOST:localhost}
+    port: 27017
+    database: sale_db
     auto-index-creation: true
 
-  data:
-    mongodb:
-      uri: mongodb://sale_user:sale_password@localhost:27017/sale_db?authSource=sale_db
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:discovery-service}:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 app:
   version: 1.0
-  productService:
-    url: http://localhost:8082
-    endpointConsultProduct: ${app.productService.url}/product
-  clientService:
-    url: http://localhost:8081
-    endpointConsultClient: ${app.clientService.url}/client/exists/{id}
-
