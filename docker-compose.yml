@@ -27,8 +27,8 @@ services:
     ports:
       - "8761:8761"
     environment:
-      - CONFIG_SERVER_URL=http://config-server:8888
-      - PORT=8080
+      - CONFIG_SERVER_URL=http://root:root@config-server:8888
+      - PORT=8761
       - EUREKA_HOSTNAME=discovery-service
     depends_on:
       - config-server
@@ -51,7 +51,7 @@ services:
     ports:
       - "8081:8080"
     environment:
-      - CONFIG_SERVER_URL=http://config-server:8888
+      - CONFIG_SERVER_URL=http://root:root@config-server:8888
       - PORT=8080
       - MONGODB_HOST=shop-mongo-database
       - DISCOVERY_HOST=discovery-service
@@ -68,7 +68,7 @@ services:
     ports:
       - "8082:8080"
     environment:
-      - CONFIG_SERVER_URL=http://config-server:8888
+      - CONFIG_SERVER_URL=http://root:root@config-server:8888
       - PORT=8080
       - MONGODB_HOST=shop-mongo-database
       - DISCOVERY_HOST=discovery-service
@@ -86,7 +86,7 @@ services:
     ports:
       - "8083:8080"
     environment:
-      - CONFIG_SERVER_URL=http://config-server:8888
+      - CONFIG_SERVER_URL=http://root:root@config-server:8888
       - PORT=8080
       - MONGODB_HOST=shop-mongo-database
       - DISCOVERY_HOST=discovery-service
