@@ -102,4 +102,14 @@ public class SaleController {
         return ResponseEntity.ok(registerSale.addProductToSale(quantity, productCode, saleCode));
     }
 
+    @PutMapping(value = "/finish/{saleCode}")
+    @Operation(summary = "add status COMPLETED to an existing sale")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sale successfully FINISHED/COMPLETED"),
+            @ApiResponse(responseCode = "404", description = "sale NOT found")
+    })
+    public ResponseEntity<Sale> finishSale(@PathVariable(value = "saleCode", required = true) String saleCode){
+        return ResponseEntity.ok(registerSale.finishSale(saleCode));
+    }
+
 }
