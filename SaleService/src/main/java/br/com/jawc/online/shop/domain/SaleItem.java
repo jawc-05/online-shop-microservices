@@ -19,25 +19,27 @@ public class SaleItem {
     private Integer quantity = 0;
     @Builder.Default
     private BigDecimal priceAtSale = BigDecimal.ZERO;
-    @Builder.Default
-    private BigDecimal totalValue = BigDecimal.ZERO;
+
+    public BigDecimal getTotalValue(){
+        if (this.priceAtSale == null || this.quantity == null) {
+            return BigDecimal.ZERO;
+        }
+        return this.priceAtSale.multiply(BigDecimal.valueOf(this.quantity));
+    }
+
 
 
 
     public void add(Integer quantity) {
         this.quantity += quantity;
-
-        BigDecimal itemPrice = this.priceAtSale.multiply(BigDecimal.valueOf(quantity));
-
-        this.totalValue = this.totalValue.add(itemPrice);
     }
 
-    public void remove(Integer quantity) {
-        this.quantity -= quantity;
-
-        BigDecimal newValue = this.priceAtSale.multiply(BigDecimal.valueOf(quantity));
-
-        this.totalValue = this.totalValue.subtract(newValue);
+    public void remove(Integer quantityToRemove) {
+        if (quantityToRemove != null && quantityToRemove > this.quantity) {
+            this.quantity = 0;
+        } else {
+            this.quantity -= quantityToRemove;
+        }
     }
 
 }
